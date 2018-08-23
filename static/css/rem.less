@@ -1,0 +1,108 @@
+.px2rem(@name, @px){
+    @{name}: @px / 64 * 1rem;
+}
+.px2px(@name, @px){
+    @{name}: round(@px / 2) * 1px;
+  [data-dpr="2"] & {
+      @{name}: @px * 1px;
+  }
+  // for mx3
+  [data-dpr="2.5"] & {
+      @{name}: round(@px * 2.5 / 2) * 1px;
+  }
+  // for 小米note
+  [data-dpr="2.75"] & {
+      @{name}: round(@px * 2.75 / 2) * 1px;
+  }
+  [data-dpr="3"] & {
+      @{name}: round(@px / 2 * 3) * 1px
+  }
+  // for 三星note4
+  [data-dpr="4"] & {
+      @{name}: @px * 2px;
+  }
+}
+/*简单的圆角半径*/
+.border-radius (@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+/*四角的半径定制*/
+.border-radius-custom (@topleft: 5px, @topright: 5px, @bottomleft: 5px, @bottomright: 5px) {
+  -webkit-border-radius: @topleft @topright @bottomright @bottomleft;
+  -moz-border-radius: @topleft @topright @bottomright @bottomleft;
+  border-radius: @topleft @topright @bottomright @bottomleft;
+}
+/*方块阴影 Box Shadow*/
+.box-shadow (@x: 0px, @y: 3px, @blur: 5px, @alpha: 0.5) {
+  -webkit-box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+  -moz-box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+  box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+}
+/*元素过渡效果 Transition*/
+.transition (@prop: all, @time: 1s, @ease: linear) {
+  -webkit-transition: @prop @time @ease;
+  -moz-transition: @prop @time @ease;
+  -ms-transition: @prop @time @ease;
+  transition: @prop @time @ease;
+}
+/*转换/旋转 Transform*/
+.transform (@rotate: 90deg, @scale: 1, @skew: 1deg, @translate: 10px) {
+  -webkit-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+  -moz-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+  -ms-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+  transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+}
+/*线性渐变*/
+.gradient (@origin: left, @start: #ffffff, @stop: #000000) {
+  background-color: @start;
+  background-image: -webkit-linear-gradient(@origin, @start, @stop);
+  background-image: -moz-linear-gradient(@origin, @start, @stop);
+  background-image: -ms-linear-gradient(@origin, @start, @stop);
+  background-image: linear-gradient(@origin, @start, @stop);
+}
+/*快速渐变*/
+.quick-gradient (@origin: left, @alpha: 0.2) {
+  background-image: -webkit-linear-gradient(@origin, rgba(0,0,0,0.0), rgba(0,0,0,@alpha));
+  background-image: -moz-linear-gradient(@origin, rgba(0,0,0,0.0), rgba(0,0,0,@alpha));
+  background-image: -ms-linear-gradient(@origin, rgba(0,0,0,0.0), rgba(0,0,0,@alpha));
+  background-image: linear-gradient(@origin, rgba(0,0,0,0.0), rgba(0,0,0,@alpha));
+}
+/*镜像效果*/
+.reflect (@length: 50%, @opacity: 0.2){
+  -webkit-box-reflect: below 0px
+  -webkit-gradient(linear, left top, left bottom, from(transparent),
+          color-stop(@length, transparent), to(rgba(255,255,255,@opacity)));
+}
+/*1px的下边框*/
+.border-bottom(@color:#eeeeee){
+  border-bottom:1px solid @color;
+}
+
+/*定义字体格式*/
+.pf-font(@type, @weight, @style) {  
+    @font-face {  
+        font-family: @type;  
+        src: url('@{type}.ttf') format('truetype');  
+        font-weight: @weight;  
+        font-style: @style;  
+    }  
+}  
+  
+.pf-font-one(@type, @weight, @style) {  
+    .pf-font('@{type}', @weight, @style);  
+}
+/*计算rem*/
+.rem(width,@len:620){
+  width:@len/75rem;
+};
+.rem(height,@len:620){
+  height:@len/75rem;
+};
+.rem(padding,@len:620){
+  padding:@len/75rem;
+}
+.rem(line-height,@len:620){
+  line-height:@len/75rem;
+}
